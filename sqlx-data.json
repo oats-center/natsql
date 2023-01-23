@@ -1,0 +1,17 @@
+{
+  "db": "PostgreSQL",
+  "22cb80161378ed1f5a2a44d7251c1b03e4fe748c9d2e073519dadf911b7abef8": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "TimestamptzArray",
+          "TextArray",
+          "JsonbArray"
+        ]
+      }
+    },
+    "query": "\n            INSERT INTO natsql (time, subject, msg)\n            SELECT * FROM UNNEST($1::timestamptz[], $2::text[], $3::jsonb[])\n        "
+  }
+}
