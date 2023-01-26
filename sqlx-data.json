@@ -1,17 +1,33 @@
 {
   "db": "PostgreSQL",
-  "22cb80161378ed1f5a2a44d7251c1b03e4fe748c9d2e073519dadf911b7abef8": {
+  "7378ff23e6ef1b08a91dc822f159691f2f837c30c78978651215b8494c00a4f6": {
+    "describe": {
+      "columns": [
+        {
+          "name": "data_type",
+          "ordinal": 0,
+          "type_info": "Varchar"
+        }
+      ],
+      "nullable": [
+        true
+      ],
+      "parameters": {
+        "Left": [
+          "Name"
+        ]
+      }
+    },
+    "query": "SELECT data_type\n         FROM information_schema.columns\n         WHERE table_schema ='natsql' \n           AND table_name = $1\n           AND column_name = 'msg'"
+  },
+  "fa3192bcfb8aabc4d778ea27d92396df2b15965691f91c1d0425ddcdc41c626b": {
     "describe": {
       "columns": [],
       "nullable": [],
       "parameters": {
-        "Left": [
-          "TimestamptzArray",
-          "TextArray",
-          "JsonbArray"
-        ]
+        "Left": []
       }
     },
-    "query": "\n            INSERT INTO natsql (time, subject, msg)\n            SELECT * FROM UNNEST($1::timestamptz[], $2::text[], $3::jsonb[])\n        "
+    "query": "CREATE SCHEMA IF NOT EXISTS natsql"
   }
 }
